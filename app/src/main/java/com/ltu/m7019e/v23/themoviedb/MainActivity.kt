@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.navigation.findNavController
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,7 +25,15 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_genres-> {
+                findNavController(R.id.movie_list_ll).navigate(R.id.action_FirstFragment_to_SecondFragment)
+                true
+            }
+
+            R.id.action_settings-> {
+                findNavController(R.id.movie_list_ll).navigate(R.id.action_FirstFragment_to_SettingsFragment)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
