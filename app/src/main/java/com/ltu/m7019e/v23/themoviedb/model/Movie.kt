@@ -5,5 +5,5 @@ data class Movie(
         var posterPath: String,
         var releaseDate: String,
         var overview: String,
-        var genres: String
+        var genres: List<String>
 )
