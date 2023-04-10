@@ -30,7 +30,7 @@ class Movies {
                     "/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg",
                     "2021-03-18",
                     "Determined to ensure Superman's ultimate sacrifice was not in vain, Bruce Wayne aligns forces with Diana Prince with plans to recruit a team of metahumans to protect the world from an approaching threat of catastrophic proportions.",
-                    listOf("Comedy")
+                    listOf("Scary")
             )
         )
         list.add(
@@ -75,7 +75,7 @@ class Movies {
                 "/tnAuB8q5vv7Ax9UAEje5Xi4BXik.jpg",
                 "2021-03-18",
                 "Determined to ensure Superman's ultimate sacrifice was not in vain, Bruce Wayne aligns forces with Diana Prince with plans to recruit a team of metahumans to protect the world from an approaching threat of catastrophic proportions.",
-                listOf("Comedy")
+                listOf("Scary")
             )
         )
         list.add(
@@ -93,7 +93,7 @@ class Movies {
                 "/dWSnsAGTfc8U27bWsy2RfwZs0Bs.jpg",
                 "2021-01-29",
                 "When a prisoner transfer van is attacked, the cop in charge must fight those inside and outside while dealing with a silent foe: the icy temperatures.",
-                listOf("Comedy")
+                listOf("Sci-Fi")
             )
         )
     }

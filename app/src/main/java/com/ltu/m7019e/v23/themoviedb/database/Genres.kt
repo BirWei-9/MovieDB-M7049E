@@ -10,6 +10,7 @@ class Genres {
     init{
         list.add("Comedy")
         list.add("Sci-Fi")
+        list.add("Scary")
 
 
 

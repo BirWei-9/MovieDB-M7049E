@@ -1,5 +1,6 @@
 package com.ltu.m7019e.v23.themoviedb
 import android.os.Bundle
+import android.util.Log
 import com.ltu.m7019e.v23.themoviedb.database.Genres
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -32,9 +33,11 @@ class SecondFragment : Fragment() {
         val genre = Genres()
 
         val genreContainer = view.findViewById<LinearLayout>(R.id.secound_frag_layout)
+
         genre.list.forEach { genre ->
             val genre_view = LayoutInflater.from(requireContext()).inflate(R.layout.genre_item_list,genreContainer,false)
             val movie_genres = movie.list.filter { it.genres.contains(genre) }
+            //Log.d("test","genre: " + movie_genres + "::::" + genre )
             if (movie_genres.isEmpty()){
                 genreContainer.removeView(genre_view)
             } else {
@@ -43,9 +46,10 @@ class SecondFragment : Fragment() {
             }
 
             val movieContainer = genre_view.findViewById<LinearLayout>(R.id.movie_genre_list)
-            movie.list.forEach{movie ->
+            movie_genres.forEach{movie ->
                 val movie_view = DataBindingUtil.inflate<GenreMovieItemBinding>(LayoutInflater.from(requireContext()), R.layout.genre_movie_item, movieContainer, false)
                 movie_view.movie = movie
+                //Log.d("test2","movie:" + movie )
                 movieContainer.addView(movie_view.root)
 
             }
