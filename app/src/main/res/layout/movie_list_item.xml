@@ -30,30 +30,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            tools:text="Movie Title"
-            android:textSize="18sp"
             android:text="@{movie.title}"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/movie_poster"
-            app:layout_constraintTop_toTopOf="@+id/movie_poster" />
+            app:layout_constraintTop_toTopOf="@+id/movie_poster"
+            tools:text="Movie Title" />
 
         <TextView
             android:id="@+id/movie_release_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            tools:text="Movie Release Date"
             android:text="@{movie.releaseDate}"
+            android:textColor="#FBFAFA"
             app:layout_constraintStart_toStartOf="@+id/movie_title"
-            app:layout_constraintTop_toBottomOf="@+id/movie_title" />
+            app:layout_constraintTop_toBottomOf="@+id/movie_title"
+            tools:text="Movie Release Date" />
 
         <TextView
             android:id="@+id/movie_overview"
-            android:maxLines="4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="4"
+            android:text="@{movie.overview}"
+            android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="@+id/movie_poster"
             app:layout_constraintStart_toStartOf="@+id/movie_title"
-            android:text="@{movie.overview}"
             tools:text="Movie Overview" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

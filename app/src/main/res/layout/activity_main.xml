@@ -9,13 +9,14 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#831010"
         android:theme="@style/Theme.V23MovieDBForM7019E.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/design_default_color_error"
+            android:background="@color/darkred"
             app:popupTheme="@style/Theme.V23MovieDBForM7019E.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>

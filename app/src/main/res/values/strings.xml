@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">V23 Movie DB for M7019E</string>
+    <string name="app_name">Movie APP </string>
     <string name="action_settings">Settings</string>
     <string name="action_genres">Genres</string>
     <!-- Strings used for fragments for navigation -->

@@ -18,6 +18,7 @@
             android:id="@+id/movie_list_ll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#090909"
             android:orientation="vertical"
             tools:context=".MovieListFragment">
 
