@@ -1,4 +1,9 @@
 package com.ltu.m7019e.v23.themoviedb
+import android.app.AlertDialog
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import com.ltu.m7019e.v23.themoviedb.database.Genres
@@ -7,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
@@ -37,7 +43,6 @@ class SecondFragment : Fragment() {
         genre.list.forEach { genre ->
             val genre_view = LayoutInflater.from(requireContext()).inflate(R.layout.genre_item_list,genreContainer,false)
             val movie_genres = movie.list.filter { it.genres.contains(genre) }
-            //Log.d("test","genre: " + movie_genres + "::::" + genre )
             if (movie_genres.isEmpty()){
                 genreContainer.removeView(genre_view)
             } else {
@@ -49,7 +54,9 @@ class SecondFragment : Fragment() {
             movie_genres.forEach{movie ->
                 val movie_view = DataBindingUtil.inflate<GenreMovieItemBinding>(LayoutInflater.from(requireContext()), R.layout.genre_movie_item, movieContainer, false)
                 movie_view.movie = movie
-                //Log.d("test2","movie:" + movie )
+
+
+                create_movie_link_popup(movie_view.root, movie.imdb_link)
                 movieContainer.addView(movie_view.root)
 
             }
@@ -59,6 +66,30 @@ class SecondFragment : Fragment() {
 
         view.findViewById<Button>(R.id.button_second).setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        }
+    }
+
+    fun create_movie_link_popup(popupView : View, imdb_link: String){
+         popupView.findViewById<ImageView>(R.id.movie_poster)?.setOnClickListener {
+            // inflate the popup dialog layout
+            val builder = AlertDialog.Builder(requireContext())
+            val popupView =
+                LayoutInflater.from(requireContext()).inflate(R.layout.popup_layout, null)
+            builder.setView(popupView)
+            val dialog = builder.create()
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT)) //needed for background
+
+            dialog.show()
+
+            click_imdb_link(dialog, imdb_link)
+        }
+
+    }
+
+    fun click_imdb_link(popupView: AlertDialog, imdb_link: String){
+        popupView.findViewById<ImageView>(R.id.link_button)?.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(imdb_link))
+            requireContext().startActivity(intent)
         }
     }
 
