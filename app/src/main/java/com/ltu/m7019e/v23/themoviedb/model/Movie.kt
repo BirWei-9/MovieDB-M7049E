@@ -27,5 +27,6 @@ data class Movie(
         @SerializedName("vote_average")
         var voteAverage: Float = 0f,
 
+        @SerializedName("imdb_id")
         var imdb_link: String
 )

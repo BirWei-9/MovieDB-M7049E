@@ -1,6 +1,7 @@
 package com.ltu.m7019e.v23.themoviedb.api
 import android.util.Log
 import com.ltu.m7019e.v23.themoviedb.api.response.ApiGenreResponse
+import com.ltu.m7019e.v23.themoviedb.api.response.ApiMovieLinkResponse
 import com.ltu.m7019e.v23.themoviedb.api.response.ApiPopMoviesResponse
 import com.ltu.m7019e.v23.themoviedb.model.Genre
 import com.ltu.m7019e.v23.themoviedb.model.Movie
@@ -13,6 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiClient {
     private val API_KEY = "fa6841d3773a554209aa8b2a64ea2eee"
     private val PAGES = 2
+
 
     private val apiService: ApiService by lazy {
         val retrofit = Retrofit.Builder()
@@ -68,11 +70,36 @@ class ApiClient {
 
         })
     }
+
+    fun getMovieLink(movieId: Int, callback: (String?, Throwable?) -> Unit){
+        apiService.getMovieImdbLink(movieId = movieId,ApiKey = API_KEY).enqueue(object : Callback<ApiMovieLinkResponse>{
+            override fun onResponse(call: Call<ApiMovieLinkResponse>, response: Response<ApiMovieLinkResponse>) {
+                Log.d("ApiMovieLinkResp", "resp" + response)
+                if (response.isSuccessful){
+                    val apimovielinkResp = response.body()
+                    Log.d("Movie_link_list", "api resp" + apimovielinkResp)
+                    val movielink = apimovielinkResp?.movieLink
+                    val movie_id= apimovielinkResp?.movieID
+                    Log.d("Movie_link_after", "api resp" + movielink)
+                    callback(movielink,null)
+                }else{
+                    callback(null, Throwable(response.message()))
+                }
+
+            }
+
+            override fun onFailure(call: Call<ApiMovieLinkResponse>, t: Throwable) {
+                callback(null, t)
+            }
+
+        })
+    }
     private fun Genre.toGenre(): Genre? {
         return if(this.id != null){
             Genre(
                 id = this.id ?: 0,
-                name = this.name ?: ""
+                name = this.name ?: "",
+                movieList = null
             )
         } else{
             null
@@ -86,15 +113,16 @@ class ApiClient {
                 posterPath = this.posterPath ?: "",
                 overview = this.overview ?: "",
                 releaseDate = this.releaseDate ?: "",
-                genres = this.genres,
+                genres = this.genres  ?: listOf(),
                 movieId = this.movieId ?: 0,
-                title = this.title,
+                title = this.title  ?: "",
                 popularity = this.popularity ?: 0f,
                 voteAverage = this.voteAverage ?: 0f,
-                imdb_link = ""
+                imdb_link = this.imdb_link?: ""
             )
         } else{
             null
         }
     }
+
 }

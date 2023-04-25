@@ -37,6 +37,11 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.SettingsFragment)
                 true
             }
+            R.id.action_home-> {
+                val navController = Navigation.findNavController(this,R.id.nav_host_fragment)
+                navController.navigate(R.id.FirstFragment)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
